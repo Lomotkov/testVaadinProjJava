@@ -1,10 +1,10 @@
 package ru.lom.d.gui;
 
-import com.vaadin.ui.Button;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.themes.ValoTheme;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import ru.lom.d.data.Contact;
 import ru.lom.d.services.ContactService;
 import ru.lom.d.services.ContactServiceImpl;
@@ -31,18 +31,18 @@ public class ContactManageView extends VerticalLayout {
         this.rootView = rootView;
 
         saveBtn.addClickListener(e -> addNewContact());
-        saveBtn.setStyleName(ValoTheme.BUTTON_PRIMARY);
+        saveBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
         closeBtn.addClickListener(e -> layout.setVisible(false));
 
         newContactBtn.addClickListener(e -> showNewContactForm());
-        addComponent(newContactBtn);
+        add(newContactBtn);
 
-        layout.addComponents(new HorizontalLayout(firstName, lastName, email, phoneNumber));
-        layout.addComponent(saveBtn);
-        layout.addComponent(closeBtn);
+        layout.add(new HorizontalLayout(firstName, lastName, email, phoneNumber));
+        layout.add(saveBtn);
+        layout.add(closeBtn);
         layout.setVisible(false);
-        addComponent(layout);
+        add(layout);
     }
 
     private void showNewContactForm() {

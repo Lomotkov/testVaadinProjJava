@@ -1,8 +1,11 @@
 package ru.lom.d.gui;
 
-import com.vaadin.ui.*;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.TextField;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import ru.lom.d.data.Contact;
 import ru.lom.d.services.ContactServiceImpl;
 
@@ -27,27 +30,27 @@ public class TableOfContactView extends VerticalLayout {
         refreshBtn.addClickListener(e -> fillGrid());
 
         searchBtn.setWidth("10%");
+        refreshBtn.setWidth("10%");
         searchBtn.addClickListener(e -> searchContacts());
         HorizontalLayout horizontalLayout = new HorizontalLayout(searchString, searchBtn, refreshBtn);
-        horizontalLayout.setSizeFull();
-        horizontalLayout.setComponentAlignment(searchBtn, Alignment.BOTTOM_LEFT);
-        horizontalLayout.setComponentAlignment(refreshBtn, Alignment.BOTTOM_RIGHT);
+        horizontalLayout.setWidthFull();
+        horizontalLayout.setDefaultVerticalComponentAlignment(Alignment.END);
 
 
         removeBtn.addClickListener(e -> remove());
 
         fillGrid();
-        grid.setSizeFull();
+        grid.setWidthFull();
         grid.setSelectionMode(Grid.SelectionMode.SINGLE);
-        grid.addColumn(Contact::getFirstName).setCaption("first name");
-        grid.addColumn(Contact::getLastName).setCaption("Last name");
-        grid.addColumn(Contact::getEmail).setCaption("email");
-        grid.addColumn(Contact::getPhoneNumber).setCaption("phone number");
+        grid.addColumn(Contact::getFirstName).setHeader("first name");
+        grid.addColumn(Contact::getLastName).setHeader("Last name");
+        grid.addColumn(Contact::getEmail).setHeader("email");
+        grid.addColumn(Contact::getPhoneNumber).setHeader("phone number");
         grid.addSelectionListener(e -> rootView.getContactManage().showContact(getSelectedContact()));
 
-        addComponent(horizontalLayout);
-        addComponent(grid);
-        addComponent(removeBtn);
+        add(horizontalLayout);
+        add(grid);
+        add(removeBtn);
     }
 
     public Contact getSelectedContact() {
