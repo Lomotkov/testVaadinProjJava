@@ -2,28 +2,26 @@ package ru.lom.d.gui;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import ru.lom.d.data.Contact;
+import ru.lom.d.services.ContactService;
 import ru.lom.d.services.ContactServiceImpl;
 
 import java.util.Set;
 
 public class TableOfContactView extends VerticalLayout {
 
-    private final RootView rootView;
+    Grid<Contact> grid = new Grid<>(Contact.class);
+    ContactService contactService = new ContactServiceImpl();
+    TextField searchString = new TextField("Search");
 
-    private Grid<Contact> grid = new Grid();
-    private TextField searchString = new TextField("Search");
-    private Button removeBtn = new Button("Remove");
-    private Button searchBtn = new Button("Search");
-    private Button refreshBtn = new Button("Refresh");
-    private ContactServiceImpl contactService = new ContactServiceImpl();
 
     public TableOfContactView(RootView rootView) {
-        this.rootView = rootView;
+        Button removeBtn = new Button("Remove");
+        Button searchBtn = new Button("Search");
+        Button refreshBtn = new Button("Refresh");
 
         searchString.setWidth("100%");
 

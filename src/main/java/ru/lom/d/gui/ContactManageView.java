@@ -17,17 +17,17 @@ public class ContactManageView extends VerticalLayout {
 
     private boolean newContactFlag = false;
 
-    private Button newContactBtn = new Button("Add new contact");
-    private VerticalLayout layout = new VerticalLayout();
-    private Button saveBtn = new Button("Save");
-    private Button closeBtn = new Button("Close");
-    private TextField firstName = new TextField("First name");
-    private TextField lastName = new TextField("Last name");
-    private TextField email = new TextField("Email");
-    private TextField phoneNumber = new TextField("Phone number");
-
+    TextField firstName = new TextField("First name");
+    TextField lastName = new TextField("Last name");
+    TextField email = new TextField("Email");
+    TextField phoneNumber = new TextField("Phone number");
+    VerticalLayout layout = new VerticalLayout();
 
     public ContactManageView(RootView rootView) {
+        Button newContactBtn = new Button("Add new contact");
+        Button saveBtn = new Button("Save");
+        Button closeBtn = new Button("Close");
+
         this.rootView = rootView;
 
         saveBtn.addClickListener(e -> addNewContact());
